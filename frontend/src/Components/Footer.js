@@ -6,7 +6,7 @@ const Footer = () => {
     <footer>
       <Container>
         <Row>
-          <Col className="text-center py-3" collapseOnSelection>
+          <Col className="text-center py-3" collapseOnSelect>
             Copyrigt &copy; ProShop
           </Col>
         </Row>
