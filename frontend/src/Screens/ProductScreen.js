@@ -58,4 +58,6 @@ const ProductScreen = ({ match }) => {
   );
 };
 
+/* if the current 1 row 2 column layout does not look good then switch to 1 row 3 column layout. Refer: folder 2 video 6 */
+
 export default ProductScreen;
