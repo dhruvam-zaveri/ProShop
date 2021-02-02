@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Carousel, Image } from "react-bootstrap";
-import products from "../products.js";
+// import products from "../products.js";
+import axios from "axios";
 
 const CarouselSlider = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const { data } = await axios.get("/api/products");
+
+      setProducts(data);
+    };
+    fetchProduct();
+  }, []);
+
   return (
     <Carousel className="py-4" md={12} indicators={false}>
       {products.map((p) => {
