@@ -79,6 +79,4 @@ const products = [
   },
 ];
 
-module.exports = products;
-// Changing the ES6 JS syntax to CommonJS syntax
-// Changed "import default products;" to "module.exports = products;"
+export default products;
