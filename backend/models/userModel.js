@@ -36,4 +36,4 @@ const userSchema = mongoose.Schema(
 // We want to create a model out of this schema thats why we are using mongoose.model() method
 const User = mongoose.model("User", userSchema);
 
-export const User;
+export default User;

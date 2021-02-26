@@ -26,12 +26,10 @@ const productSchema = mongoose.Schema(
     image: {
       type: String,
       required: true,
-      unique: true,
     },
     brand: {
       type: String,
       required: true,
-      unique: true,
     },
     category: {
       type: String,
@@ -66,10 +64,10 @@ const productSchema = mongoose.Schema(
     },
   },
   {
-    timeStamps: true,
+    timestamps: true,
   }
 );
 
 const Product = mongoose.model("Product", productSchema);
 
-export const Product;
+export default Product;

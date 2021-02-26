@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const userSchema = mongoose.Schema(
+const orderSchema = mongoose.Schema(
   {
     // We can also define fields like:
     // fieldName: typeOfField
@@ -85,10 +85,10 @@ const userSchema = mongoose.Schema(
     },
   },
   {
-    timeStamps: true,
+    timestamps: true,
   }
 );
 
 const Order = mongoose.model("Order", orderSchema);
 
-export const Order;
+export default Order;
