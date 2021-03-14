@@ -1,7 +1,7 @@
 import "./Components/Header.js";
 import Header from "./Components/Header.js";
 import Footer from "./Components/Footer.js";
-import CarouselSlider from "./Components/CarouselSlider.js";
+// import CarouselSlider from "./Components/CarouselSlider.js";
 import HomeScreen from "./Screens/HomeScreen.js";
 import ProductScreen from "./Screens/ProductScreen.js";
 import { Container } from "react-bootstrap";
@@ -13,7 +13,7 @@ const App = () => {
       <Header />
       <main className="py-3">
         <Container>
-          <CarouselSlider />
+          {/* <CarouselSlider /> */}
           <Route path="/" component={HomeScreen} exact />
           <Route path="/product/:id" component={ProductScreen} exact />
         </Container>
