@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Row, Col } from "react-bootstrap";
 import Product from "../Components/Product.js";
 import { listProducts } from "../actions/productActions.js";
+import Message from "../Components/Message.js";
+import Loader from "../Components/Loader.js";
 // useState hook is used to use state in functional components, because in class based components we would define our state in
 // constructor but with functions we don't have constructor, so we will be using this hook.
 
@@ -76,9 +78,9 @@ const HomeScreen = () => {
     <>
       <h1>Latest Products</h1>
       {loading ? (
-        <h2>Loading...</h2>
+        <Loader>Loading...</Loader>
       ) : error ? (
-        <h2>{error}</h2>
+        <Message variant="danger">{error}</Message>
       ) : (
         <Row>
           {products.map((product) => {
