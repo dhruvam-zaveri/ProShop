@@ -4,6 +4,7 @@ import Footer from "./Components/Footer.js";
 // import CarouselSlider from "./Components/CarouselSlider.js";
 import HomeScreen from "./Screens/HomeScreen.js";
 import ProductScreen from "./Screens/ProductScreen.js";
+import CartScreen from "./Screens/CartScreen.js";
 import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -16,6 +17,7 @@ const App = () => {
           {/* <CarouselSlider /> */}
           <Route path="/" component={HomeScreen} exact />
           <Route path="/product/:id" component={ProductScreen} exact />
+          <Route path="/cart/:id" component={CartScreen} exact />
         </Container>
       </main>
       <Footer />
