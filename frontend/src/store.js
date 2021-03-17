@@ -5,13 +5,21 @@ import {
   productListReducer,
   productDetailsReducer,
 } from "./reducers/productReducers.js";
+import { cartReducer } from "./reducers/cartReducers.js";
 
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
+  cart: cartReducer,
 });
 
-const initialState = {}; // the state that will be preloaded
+const cartItemsFromStorage = localStorage.getItem("cartItems")
+  ? JSON.parse(localStorage.getItem("cartItems"))
+  : [];
+
+const initialState = {
+  cart: { cartItemsFromStorage },
+}; // the state that will be preloaded
 
 const middleware = [thunk]; // list of middleware that we will be using
 
