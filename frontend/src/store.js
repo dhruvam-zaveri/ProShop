@@ -18,7 +18,7 @@ const cartItemsFromStorage = localStorage.getItem("cartItems")
   : [];
 
 const initialState = {
-  cart: { cartItemsFromStorage },
+  cart: { cartItems: cartItemsFromStorage },
 }; // the state that will be preloaded
 
 const middleware = [thunk]; // list of middleware that we will be using

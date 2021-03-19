@@ -6,9 +6,7 @@ const Footer = () => {
     <footer>
       <Container>
         <Row>
-          <Col className="text-center py-3" collapseOnSelect>
-            Copyrigt &copy; ProShop
-          </Col>
+          <Col className="text-center py-3">Copyrigt &copy; ProShop</Col>
         </Row>
       </Container>
     </footer>
