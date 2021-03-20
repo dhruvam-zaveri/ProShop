@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Form, ListGroup, Image, Button } from "react-bootstrap";
 import Message from "../Components/Message.js";
-import { addToCart } from "../actions/cartAction.js";
+import { addToCart, removeFromCart } from "../actions/cartAction.js";
 
 export const CartScreen = ({ match, location, history }) => {
   // match is used to access URL parameters using match.params
@@ -26,7 +26,7 @@ export const CartScreen = ({ match, location, history }) => {
   }, [dispatch, productId, qty]);
 
   const removeFromCartHandler = (id) => {
-    console.log("remove");
+    dispatch(removeFromCart(id));
   };
 
   const checkOutHandler = () => {
