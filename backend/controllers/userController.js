@@ -1,5 +1,6 @@
 import expressAsyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
+import generateToken from "../utils/generateToken.js";
 
 //@desc   Auth users and get token
 //@route  POST /api/users/login
@@ -16,7 +17,7 @@ const authUser = expressAsyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
-      token: null,
+      token: generateToken(user.id),
     });
   } else {
     // 401 means Unauthorized
