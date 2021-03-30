@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import bcrypt from "bcryptjs";
 const userSchema = mongoose.Schema(
   {
     // We can also define fields like:
@@ -32,6 +32,11 @@ const userSchema = mongoose.Schema(
     timeStamps: true,
   }
 );
+
+// Function to compare the entered password against the password present in DB
+userSchema.methods.matchPassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
 
 // We want to create a model out of this schema thats why we are using mongoose.model() method
 const User = mongoose.model("User", userSchema);
