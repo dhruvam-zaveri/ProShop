@@ -1,12 +1,21 @@
 import express from "express";
-import { authUser, getUserProfile } from "../controllers/userController.js";
+import {
+  authUser,
+  getUserProfile,
+  registerUser,
+} from "../controllers/userController.js";
 import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
+//@desc   Create user
+//@route  POST /api/users/
+//@access public
+router.route("/").post(registerUser);
+
 //@desc   Fetch all the products
 //@route  POST /api/users/login
-//@access private
+//@access public
 router.post("/login", authUser);
 
 //@desc   Returns logged in user's profile

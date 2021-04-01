@@ -38,6 +38,18 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
+// Creating middleware to encrypt the password before saving it
+userSchema.pre("save", async function (next) {
+  // consdition to check if the password is modified, because this middleware will be called for every update
+  // this means even if we modify any field other than password it will encrypt the existing password and that will create problem
+  // so before encrypting we will check if password was modified, if yes then encrypt the new password else call next()
+  if (!this.isModified("password")) {
+    next();
+  }
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+});
+
 // We want to create a model out of this schema thats why we are using mongoose.model() method
 const User = mongoose.model("User", userSchema);
 
