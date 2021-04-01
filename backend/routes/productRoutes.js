@@ -10,12 +10,12 @@ const router = express.Router();
 // single location, creating modular routes is helpful, as is reducing redundancy and typos.
 
 //@desc   Fetch all the products
-//@route  Get /api/products
+//@route  GET /api/products
 //@access public
 router.route("/").get(getProducts);
 
 //@desc   Fetch single product
-//@route  Get /api/products/:id
+//@route  GET /api/products/:id
 //@access public
 router.route("/:id").get(getProductWithId);
 
