@@ -39,6 +39,7 @@ const registerUser = expressAsyncHandler(async (req, res) => {
     throw new Error("User already exists");
   }
 
+  // .create() method creates a new doocument in DB
   const user = await User.create({
     name,
     email,
@@ -78,4 +79,33 @@ const getUserProfile = expressAsyncHandler(async (req, res) => {
   }
 });
 
-export { authUser, getUserProfile, registerUser };
+//@desc   Updates logged in user's profile
+//@route  PUT /api/users/profile
+//@access private
+const updateUserProfile = expressAsyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    user.email = req.body.email || user.email;
+    user.name = req.body.name || user.name;
+
+    if (req.body.password) {
+      user.password = req.body.password || user.password;
+    }
+
+    // .save() method will call the DB and change/modify the values for a given user
+    await user.save();
+
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
+export { authUser, getUserProfile, registerUser, updateUserProfile };
