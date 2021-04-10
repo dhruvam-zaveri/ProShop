@@ -1,11 +1,11 @@
-import mongoose from "mongoose";
 import dotenv from "dotenv";
 import users from "./data/users.js";
 import products from "./data/products.js";
+import sales from "./data/sale.js";
 import User from "./models/userModel.js";
 import Product from "./models/productModel.js";
 import Order from "./models/orderModel.js";
-import connect from "./config/db.js";
+import Sale from "./models/saleModel.js";
 import connectDB from "./config/db.js";
 
 dotenv.config();
@@ -20,6 +20,7 @@ const importData = async () => {
     });
 
     await Product.insertMany(sampleProducts);
+    const sale = await Sale.insertMany(sales);
 
     console.log("Data imported!!");
     process.exit();
@@ -34,6 +35,7 @@ const destroyData = async () => {
     await Order.deleteMany();
     await Product.deleteMany();
     await User.deleteMany();
+    await Sale.deleteMany();
 
     console.log("Data deleted!");
     process.exit();

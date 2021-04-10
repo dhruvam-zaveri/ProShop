@@ -4,6 +4,7 @@ import colors from "colors";
 import connectDB from "./config/db.js";
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import saleRoutes from "./routes/saleRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
 dotenv.config();
@@ -23,6 +24,7 @@ app.use(express.json());
 
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/sale", saleRoutes);
 
 // To deal with 404 errors; if any route other than specified is tried to access
 app.use(notFound);

@@ -3,28 +3,29 @@ import { Carousel, Image } from "react-bootstrap";
 import axios from "axios";
 
 const CarouselSlider = () => {
-  const [products, setProducts] = useState([]);
+  const [sale, setSale] = useState([]);
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      const { data } = await axios.get("/api/products");
+    const fetchSale = async () => {
+      const { data } = await axios.get("/api/sale");
 
-      setProducts(data);
+      setSale(data);
     };
-    fetchProduct();
+    fetchSale();
   }, []);
 
   return (
-    <Carousel
-      className="py-4 justify-content-center"
-      md={12}
-      xs={12}
-      indicators={false}
-    >
-      {products.map((p) => {
+    <Carousel className=" justify-content-center" indicators={false}>
+      {sale.map((s) => {
         return (
-          <Carousel.Item style={{ height: "70vh", width: "75vw" }}>
-            <Image className="d-block w-100" src={p.image} alt={p.name} fluid />
+          <Carousel.Item key={s._id}>
+            <Image
+              className="d-block w-100"
+              src={s.image}
+              alt={s.name}
+              style={{ height: "50vh" }}
+              fluid
+            />
           </Carousel.Item>
         );
       })}
