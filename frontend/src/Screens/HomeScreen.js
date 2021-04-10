@@ -12,6 +12,7 @@ import Product from "../Components/Product.js";
 import { listProducts } from "../actions/productActions.js";
 import Message from "../Components/Message.js";
 import Loader from "../Components/Loader.js";
+
 // useState hook is used to use state in functional components, because in class based components we would define our state in
 // constructor but with functions we don't have constructor, so we will be using this hook.
 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Carousel, Image } from "react-bootstrap";
-// import products from "../products.js";
 import axios from "axios";
 
 const CarouselSlider = () => {
@@ -16,7 +15,12 @@ const CarouselSlider = () => {
   }, []);
 
   return (
-    <Carousel className="py-4" md={12} indicators={false}>
+    <Carousel
+      className="py-4 justify-content-center"
+      md={12}
+      xs={12}
+      indicators={false}
+    >
       {products.map((p) => {
         return (
           <Carousel.Item style={{ height: "70vh", width: "75vw" }}>
