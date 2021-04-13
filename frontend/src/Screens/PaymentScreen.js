@@ -38,6 +38,7 @@ export const PaymentScreen = ({ history }) => {
                   label="PayPal or Credit Card"
                   id="Paypal"
                   value="PayPal"
+                  checked
                   onChange={(e) => setPaymentMethod(e.target.value)}
                 ></Form.Check>
 
