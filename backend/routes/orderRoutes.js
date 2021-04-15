@@ -3,6 +3,6 @@ import { addOrderItems } from "../controllers/orderController.js";
 import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
-router.router("/").post(protect, addOrderItems);
+router.route("/").post(protect, addOrderItems);
 
 export default router;

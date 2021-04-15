@@ -88,14 +88,12 @@ const updateUserProfile = expressAsyncHandler(async (req, res) => {
   if (user) {
     user.email = req.body.email || user.email;
     user.name = req.body.name || user.name;
-
     if (req.body.password) {
       user.password = req.body.password || user.password;
     }
 
     // .save() method will call the DB and change/modify the values for a given user
     await user.save();
-
     res.json({
       _id: user._id,
       name: user.name,

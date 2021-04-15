@@ -84,7 +84,7 @@ export const ProfileScreen = ({ history }) => {
           <Form.Group controlId={confirmPassword}>
             <Form.Label>Confirm password</Form.Label>
             <Form.Control
-              type="password"
+              type="confirmPassword"
               placeholder="Confirm password"
               onChange={(e) => setConfirmPassword(e.target.value)}
               value={confirmPassword}

@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row, Image, ListGroup, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Message from "../Components/Message.js";
 import CheckoutSteps from "../Components/CheckoutSteps.js";
+import { createOrder } from "../actions/orderActions.js";
 
 export const PlaceOrderScreen = ({ history }) => {
+  const dispatch = useDispatch();
+
   const cart = useSelector((state) => state.cart);
+
+  const orderCreate = useSelector((state) => state.orderCreate);
+  const { order, success, error } = orderCreate;
 
   const addDecimals = (num) => {
     return (Math.round(num * 100) / 100).toFixed(2);
@@ -28,7 +34,26 @@ export const PlaceOrderScreen = ({ history }) => {
 
   const placeOrderHandler = (e) => {
     e.preventDefault();
+    dispatch(
+      createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod.paymentMethod,
+        itemsPrice: cart.itemsPrice,
+        shippingPrice: cart.shippingPrice,
+        taxPrice: cart.taxPrice,
+        totalPrice: cart.totalPrice,
+      })
+    );
+    console.log(cart);
   };
+
+  useEffect(() => {
+    if (success) {
+      history.push(`/orders/${order._id}`);
+    }
+    //eslint - disable - next - line;
+  }, [history, success]);
 
   return (
     <>
@@ -41,7 +66,8 @@ export const PlaceOrderScreen = ({ history }) => {
               <p>
                 <strong>Address:</strong>
                 {cart.shippingAddress.address}
-                {", "}
+                {","}
+                <br />
                 {cart.shippingAddress.city}
                 {", "}
                 {cart.shippingAddress.state}
@@ -79,7 +105,8 @@ export const PlaceOrderScreen = ({ history }) => {
                           <Link to={`/product/${item._id}`}>{item.name}</Link>
                         </Col>
                         <Col md={4}>
-                          {item.qty} x ${item.price} = ${item.qty * item.price}
+                          {item.qty} x ${item.price} = $
+                          {addDecimals(item.qty * item.price)}
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -123,6 +150,8 @@ export const PlaceOrderScreen = ({ history }) => {
                   <Col>${cart.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
+
+              {error && <Message variant="danger">{error}</Message>}
 
               <ListGroup.Item>
                 <Button
