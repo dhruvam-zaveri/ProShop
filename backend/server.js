@@ -24,9 +24,9 @@ app.get("/", (req, res) => {
 app.use(express.json());
 
 app.use("/api/products", productRoutes);
-app.use("/api/orders", orderRoutes);
-app.use("/api/users", userRoutes);
 app.use("/api/sale", saleRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/orders", orderRoutes);
 
 // To deal with 404 errors; if any route other than specified is tried to access
 app.use(notFound);
