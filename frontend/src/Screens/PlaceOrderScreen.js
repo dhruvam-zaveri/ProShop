@@ -51,7 +51,7 @@ export const PlaceOrderScreen = ({ history }) => {
     if (success) {
       history.push(`/order/${order._id}`);
     }
-    //eslint - disable - next - line;
+    // eslint-disable-next-line
   }, [history, success]);
 
   return (

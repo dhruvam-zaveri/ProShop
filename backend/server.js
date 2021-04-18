@@ -28,6 +28,11 @@ app.use("/api/sale", saleRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
 
+// when we are ready we will hit this route and fetch the client ID
+app.get("/api/config/paypal", (req, res) =>
+  res.send(process.env.PAYPAL_CLIENT_ID)
+);
+
 // To deal with 404 errors; if any route other than specified is tried to access
 app.use(notFound);
 

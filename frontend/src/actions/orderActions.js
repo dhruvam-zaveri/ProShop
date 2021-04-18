@@ -92,12 +92,13 @@ export const payOrder = (orderId, paymentResult) => async (
 
     const config = {
       headers: {
+        "Content-Type": "application/json",
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
 
-    const { data } = await axios.get(
-      `/api/orders/${orderId}`,
+    const { data } = await axios.put(
+      `/api/orders/${orderId}/pay`,
       paymentResult,
       config
     );
