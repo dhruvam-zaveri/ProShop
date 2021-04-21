@@ -36,8 +36,6 @@ export const ProfileScreen = ({ history }) => {
     }
   };
 
-  console.log(userDetails, userLogin, orderMyList);
-
   useEffect(() => {
     if (!userInfo) {
       history.push("/login");
