@@ -1,0 +1,79 @@
+import React, { useEffect } from "react";
+import { Table, Button } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import Message from "../Components/Message.js";
+import Loader from "../Components/Loader.js";
+import { listUsers } from "../actions/userActions";
+
+export const UserListScreen = () => {
+  const dispatch = useDispatch();
+
+  const userList = useSelector((state) => state.userList);
+  const { loading, users, error } = userList;
+
+  const deleteHandler = (id) => {
+    console.log("delete user");
+  };
+
+  useEffect(() => {
+    dispatch(listUsers());
+  }, [dispatch]);
+
+  return (
+    <>
+      <h1>Users</h1>
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Message variant="danger">{error}</Message>
+      ) : (
+        <Table striped hover bordered responsive className="table-s">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Admin</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <tr key={user._id}>
+                <th>{user._id}</th>
+                <th>{user.name}</th>
+                <th>
+                  <a href={`${user.email}`}>{user.email}</a>
+                </th>
+                <th>
+                  {user.isAdmin ? (
+                    <i className="fa fa-checked" style={{ color: "green" }}></i>
+                  ) : (
+                    <i className="fa fa-times" style={{ color: "red" }}></i>
+                  )}
+                </th>
+                <th>
+                  <LinkContainer to={`/user/${user._id}/edit`}>
+                    <Button variant="light" className="btn-sm">
+                      <i className="fa fa-edit"></i>
+                    </Button>
+                  </LinkContainer>
+                  <Button
+                    variant="danger"
+                    onClick={() => deleteHandler(user._id)}
+                    className="btn-sm"
+                  >
+                    <i className="fa fa-trash"></i>
+                  </Button>
+                </th>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      )}
+    </>
+  );
+};
+
+export default UserListScreen;
