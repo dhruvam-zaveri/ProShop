@@ -12,6 +12,7 @@ import PaymentScreen from "./Screens/PaymentScreen.js";
 import PlaceOrderScreen from "./Screens/PlaceOrderScreen.js";
 import OrderScreen from "./Screens/OrderScreen.js";
 import UserListScreen from "./Screens/UserListScreen.js";
+import UserEditScreen from "./Screens/UserEditScreen.js";
 import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/payment" component={PaymentScreen} exact />
           <Route path="/placeorder" component={PlaceOrderScreen} exact />
           <Route path="/admin/userlist" component={UserListScreen} exact />
+          <Route path="/admin/user/:id/edit" component={UserEditScreen} exact />
           <Route path="/order/:id" component={OrderScreen} exact />
         </Container>
       </main>
