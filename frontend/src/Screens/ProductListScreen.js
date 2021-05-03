@@ -4,7 +4,12 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../Components/Message.js";
 import Loader from "../Components/Loader.js";
-import { listProducts, deleteProduct } from "../actions/productActions";
+import {
+  listProducts,
+  deleteProduct,
+  createProduct,
+} from "../actions/productActions";
+import { PRODUCT_CREATE_RESET } from "../constants/productConstants.js";
 
 export const ProductListScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -16,7 +21,19 @@ export const ProductListScreen = ({ history }) => {
   const { userInfo } = userLogin;
 
   const productDelete = useSelector((state) => state.productDelete);
-  const { success: successDelete } = productDelete;
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = productDelete;
+
+  const productCreate = useSelector((state) => state.productCreate);
+  const {
+    success: successCreate,
+    loading: loadingCreate,
+    error: errorCreate,
+    product: createdProduct,
+  } = productCreate;
 
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
@@ -25,16 +42,27 @@ export const ProductListScreen = ({ history }) => {
   };
 
   const createProductHandler = () => {
-    console.log("Create a new product");
+    dispatch(createProduct());
   };
 
   useEffect(() => {
-    if (userInfo && userInfo.isAdmin) {
-      dispatch(listProducts());
-    } else {
+    dispatch({ type: PRODUCT_CREATE_RESET });
+    if (!userInfo.isAdmin) {
       history.push("/login");
     }
-  }, [dispatch, history, userInfo, successDelete]);
+    if (successCreate) {
+      history.push(`/api/product/${createdProduct._id}/edit`);
+    } else {
+      dispatch(listProducts());
+    }
+  }, [
+    dispatch,
+    history,
+    userInfo,
+    successDelete,
+    successCreate,
+    createdProduct,
+  ]);
 
   return (
     <>
@@ -52,6 +80,11 @@ export const ProductListScreen = ({ history }) => {
           </Button>
         </Col>
       </Row>
+
+      {loadingDelete && <Loader />}
+      {errorDelete && <Message variant="danger">{errorDelete}</Message>}
+      {loadingCreate && <Loader />}
+      {errorCreate && <Message variant="danger">{errorCreate}</Message>}
 
       {loading ? (
         <Loader />
