@@ -4,7 +4,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../Components/Message.js";
 import Loader from "../Components/Loader.js";
-import { listProducts } from "../actions/productActions";
+import { listProducts, deleteProduct } from "../actions/productActions";
 
 export const ProductListScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -15,10 +15,12 @@ export const ProductListScreen = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const productDelete = useSelector((state) => state.productDelete);
+  const { success: successDelete } = productDelete;
+
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
-      // Add action to delete product
-      console.log("Product with id " + id + " is deleted");
+      dispatch(deleteProduct(id));
     }
   };
 
@@ -32,7 +34,7 @@ export const ProductListScreen = ({ history }) => {
     } else {
       history.push("/login");
     }
-  }, [dispatch, history, userInfo]);
+  }, [dispatch, history, userInfo, successDelete]);
 
   return (
     <>
