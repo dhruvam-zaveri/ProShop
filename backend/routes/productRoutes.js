@@ -3,6 +3,8 @@ import {
   getProducts,
   getProductWithId,
   deleteProductWithId,
+  updateProduct,
+  createProduct,
 } from "../controllers/productController.js";
 import { protect, admin } from "../middleware/authMiddleware.js";
 
@@ -11,11 +13,11 @@ const router = express.Router();
 // You can create chainable route handlers for a route path by using app.route().Because the path is specified at a
 // single location, creating modular routes is helpful, as is reducing redundancy and typos.
 
-router.route("/").get(getProducts);
-
+router.route("/").get(getProducts).post(protect, admin, createProduct);
 router
   .route("/:id")
   .get(getProductWithId)
-  .delete(protect, admin, deleteProductWithId);
+  .delete(protect, admin, deleteProductWithId)
+  .put(protect, admin, updateProduct);
 
 export default router;
