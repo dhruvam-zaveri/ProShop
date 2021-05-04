@@ -51,7 +51,7 @@ export const ProductListScreen = ({ history }) => {
       history.push("/login");
     }
     if (successCreate) {
-      history.push(`/api/product/${createdProduct._id}/edit`);
+      history.push(`/admin/product/${createdProduct._id}/edit`);
     } else {
       dispatch(listProducts());
     }

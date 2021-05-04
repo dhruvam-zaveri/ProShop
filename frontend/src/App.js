@@ -14,6 +14,7 @@ import OrderScreen from "./Screens/OrderScreen.js";
 import UserListScreen from "./Screens/UserListScreen.js";
 import ProductListScreen from "./Screens/ProductListScreen.js";
 import UserEditScreen from "./Screens/UserEditScreen.js";
+import ProductEditScreen from "./Screens/ProductEditScreen.js";
 import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -40,6 +41,11 @@ const App = () => {
             exact
           />
           <Route path="/admin/user/:id/edit" component={UserEditScreen} exact />
+          <Route
+            path="/admin/product/:id/edit"
+            component={ProductEditScreen}
+            exact
+          />
           <Route path="/order/:id" component={OrderScreen} exact />
         </Container>
       </main>
