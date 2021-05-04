@@ -41,10 +41,10 @@ export const ProductEditScreen = ({ match, history }) => {
         _id: productId,
         name,
         price,
-        description,
         image,
         brand,
         category,
+        description,
         countInStock,
       })
     );
