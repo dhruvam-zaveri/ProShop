@@ -13,6 +13,7 @@ import PlaceOrderScreen from "./Screens/PlaceOrderScreen.js";
 import OrderScreen from "./Screens/OrderScreen.js";
 import UserListScreen from "./Screens/UserListScreen.js";
 import ProductListScreen from "./Screens/ProductListScreen.js";
+import OrderListScreen from "./Screens/OrderListScreen.js";
 import UserEditScreen from "./Screens/UserEditScreen.js";
 import ProductEditScreen from "./Screens/ProductEditScreen.js";
 import { Container } from "react-bootstrap";
@@ -35,6 +36,7 @@ const App = () => {
           <Route path="/payment" component={PaymentScreen} exact />
           <Route path="/placeorder" component={PlaceOrderScreen} exact />
           <Route path="/admin/userlist" component={UserListScreen} exact />
+          <Route path="/admin/orderlist" component={OrderListScreen} exact />
           <Route
             path="/admin/productlist"
             component={ProductListScreen}
