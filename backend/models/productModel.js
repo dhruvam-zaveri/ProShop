@@ -2,6 +2,12 @@ import mongoose from "mongoose";
 
 const reviewSchema = mongoose.Schema(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      // we want to refrence a specific model for the ObjectId in type field, this will add a relationship between user and product
+      ref: "User",
+    },
     name: { type: String, required: true },
     rating: { type: Number, required: true },
     comment: { type: String, required: true },
