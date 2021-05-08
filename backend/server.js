@@ -24,7 +24,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/sale", saleRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
-app.use("/api/uploads", uploadRoutes);
+app.use("/api/upload", uploadRoutes);
 
 // when we are ready we will hit this route and fetch the client ID
 app.get("/api/config/paypal", (req, res) =>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { Form, Col, Row, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -50,7 +51,26 @@ export const ProductEditScreen = ({ match, history }) => {
     );
   };
 
-  const uploadFileHandler = (e) => {};
+  const uploadFileHandler = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
+    setUploading(true);
+
+    try {
+      const config = {
+        headers: {
+          "Content-type": "multipart/form-data",
+        },
+      };
+      const { data } = await axios.post("/api/upload", formData, config);
+      setImage(data);
+      setUploading(false);
+    } catch (error) {
+      console.log(error);
+      setUploading(false);
+    }
+  };
 
   useEffect(() => {
     if (successUpdate) {
