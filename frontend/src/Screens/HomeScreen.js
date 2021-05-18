@@ -24,7 +24,9 @@ import CarouselSlider from "../Components/CarouselSlider.js";
 // in dependecies the callback method is fired e.g. [test] is passed then whenever the value of test is changed callback method
 // will be fired
 
-const HomeScreen = () => {
+const HomeScreen = ({ match }) => {
+  const keyword = match.params.keyword;
+
   // useDispatch is used to fire actions
   // To use useDispatch hook we need to declare a variable calles dispatch and set it
   const dispatch = useDispatch();
@@ -73,8 +75,8 @@ const HomeScreen = () => {
 
     // We can do this by going into frontend/package.json and adding "proxy":"http://127.0.0.1:5000" right under the "name"
 
-    dispatch(listProducts());
-  }, [dispatch]);
+    dispatch(listProducts(keyword));
+  }, [dispatch, keyword]);
 
   return (
     <>
