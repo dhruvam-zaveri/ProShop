@@ -12,6 +12,7 @@ import Product from "../Components/Product.js";
 import { listProducts } from "../actions/productActions.js";
 import Message from "../Components/Message.js";
 import Loader from "../Components/Loader.js";
+import Paginate from "../Components/Paginate.js";
 import CarouselSlider from "../Components/CarouselSlider.js";
 
 // useState hook is used to use state in functional components, because in class based components we would define our state in
@@ -26,7 +27,7 @@ import CarouselSlider from "../Components/CarouselSlider.js";
 
 const HomeScreen = ({ match }) => {
   const keyword = match.params.keyword;
-
+  const pagenumber = match.params.pagenumber ? match.params.pagenumber : 1;
   // useDispatch is used to fire actions
   // To use useDispatch hook we need to declare a variable calles dispatch and set it
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const HomeScreen = ({ match }) => {
   const productList = useSelector((state) => {
     return state.productList;
   });
-  const { loading, error, products } = productList;
+  const { loading, error, products, page, pages } = productList;
   // To use useState hook we will use following syntax:
 
   // const [products, setProducts] = useState([]);
@@ -75,8 +76,8 @@ const HomeScreen = ({ match }) => {
 
     // We can do this by going into frontend/package.json and adding "proxy":"http://127.0.0.1:5000" right under the "name"
 
-    dispatch(listProducts(keyword));
-  }, [dispatch, keyword]);
+    dispatch(listProducts(keyword, pagenumber));
+  }, [dispatch, keyword, pagenumber]);
 
   return (
     <>
@@ -86,15 +87,22 @@ const HomeScreen = ({ match }) => {
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <Row>
-          {products.map((product) => {
-            return (
-              <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-                <Product product={product} />
-              </Col>
-            );
-          })}
-        </Row>
+        <>
+          <Row>
+            {products.map((product) => {
+              return (
+                <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                  <Product product={product} />
+                </Col>
+              );
+            })}
+          </Row>
+          <Paginate
+            pages={pages}
+            page={page}
+            keyword={keyword ? keyword : ""}
+          />
+        </>
       )}
     </>
   );
