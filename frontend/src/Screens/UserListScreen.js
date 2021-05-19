@@ -4,6 +4,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../Components/Message.js";
 import Loader from "../Components/Loader.js";
+import Meta from "../Components/Meta.js";
 import { listUsers, deleteUser } from "../actions/userActions";
 
 export const UserListScreen = ({ history }) => {
@@ -34,6 +35,7 @@ export const UserListScreen = ({ history }) => {
 
   return (
     <>
+      <Meta title="ProShop | Admin | UserList" />
       <h1>Users</h1>
       {loading ? (
         <Loader />

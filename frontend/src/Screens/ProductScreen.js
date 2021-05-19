@@ -9,6 +9,7 @@ import {
 } from "../actions/productActions.js";
 import Message from "../Components/Message.js";
 import Loader from "../Components/Loader.js";
+import Meta from "../Components/Meta.js";
 import { PRODUCT_CREATE_REVIEW_RESET } from "../constants/productConstants.js";
 
 const ProductScreen = ({ history, match }) => {
@@ -27,10 +28,8 @@ const ProductScreen = ({ history, match }) => {
   const { userInfo } = userLogin;
 
   const productCreateReview = useSelector((state) => state.productCreateReview);
-  const {
-    error: errorCreateReview,
-    success: successCreateReview,
-  } = productCreateReview;
+  const { error: errorCreateReview, success: successCreateReview } =
+    productCreateReview;
 
   useEffect(() => {
     if (successCreateReview) {
@@ -59,6 +58,7 @@ const ProductScreen = ({ history, match }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
+          <Meta title={product.name} />
           <Row>
             <Col md={6}>
               <Image src={product.image} alt={product.name} fluid></Image>

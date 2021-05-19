@@ -13,6 +13,7 @@ import { listProducts } from "../actions/productActions.js";
 import Message from "../Components/Message.js";
 import Loader from "../Components/Loader.js";
 import Paginate from "../Components/Paginate.js";
+import Meta from "../Components/Meta.js";
 import CarouselSlider from "../Components/CarouselSlider.js";
 
 // useState hook is used to use state in functional components, because in class based components we would define our state in
@@ -81,6 +82,7 @@ const HomeScreen = ({ match }) => {
 
   return (
     <>
+      <Meta />
       <CarouselSlider className="py-3" />
       {loading ? (
         <Loader />

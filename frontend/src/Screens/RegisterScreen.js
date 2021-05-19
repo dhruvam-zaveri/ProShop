@@ -4,6 +4,7 @@ import { Form, Col, Row, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Message from "../Components/Message.js";
 import Loader from "../Components/Loader.js";
+import Meta from "../Components/Meta.js";
 import { register } from "../actions/userActions.js";
 
 export const RegisterScreen = ({ location, history }) => {
@@ -34,6 +35,7 @@ export const RegisterScreen = ({ location, history }) => {
 
   return (
     <Container>
+      <Meta title="ProShop | Register" />
       <Row className="justify-content-md-center">
         <Col md={6} xs={12}>
           <h1>Sign Up</h1>

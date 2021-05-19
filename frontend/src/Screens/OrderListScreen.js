@@ -4,6 +4,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../Components/Message.js";
 import Loader from "../Components/Loader.js";
+import Meta from "../Components/Meta.js";
 import { listOrders } from "../actions/orderActions.js";
 
 export const OrderListScreen = ({ history }) => {
@@ -25,6 +26,8 @@ export const OrderListScreen = ({ history }) => {
 
   return (
     <>
+      <Meta title="ProShop | Admin | OrderList" />
+
       <h1>Orders</h1>
 
       {loading ? (

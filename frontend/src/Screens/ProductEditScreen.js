@@ -5,6 +5,7 @@ import { Form, Col, Row, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Message from "../Components/Message.js";
 import Loader from "../Components/Loader.js";
+import Meta from "../Components/Meta.js";
 import {
   listProductDetails,
   updateProduct,
@@ -93,6 +94,7 @@ export const ProductEditScreen = ({ match, history }) => {
 
   return (
     <>
+      <Meta title="ProShop | Admin | ProductEdit" />
       <Link to={"/admin/userList"} className="btn btn-light my-3">
         Go Back
       </Link>

@@ -4,6 +4,7 @@ import { Col, Row, Image, ListGroup, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Message from "../Components/Message.js";
 import CheckoutSteps from "../Components/CheckoutSteps.js";
+import Meta from "../Components/Meta.js";
 import { createOrder } from "../actions/orderActions.js";
 
 export const PlaceOrderScreen = ({ history }) => {
@@ -56,6 +57,7 @@ export const PlaceOrderScreen = ({ history }) => {
 
   return (
     <>
+      <Meta title="ProShop | Order | Place Order" />
       <CheckoutSteps step1 step2 step3 step4 />
       <Row>
         <Col md={8}>

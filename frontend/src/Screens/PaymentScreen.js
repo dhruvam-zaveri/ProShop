@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Form, Row, Col, Button, Container } from "react-bootstrap";
 import { savePaymentMethod } from "../actions/cartAction.js";
 import CheckoutSteps from "../Components/CheckoutSteps.js";
+import Meta from "../Components/Meta.js";
 
 export const PaymentScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ export const PaymentScreen = ({ history }) => {
 
   return (
     <Container>
+      <Meta title="ProShop | Order | Payment" />
       <Row className="justify-content-md-center">
         <Col md={6} xs={12}>
           <CheckoutSteps step1 step2 step3 />

@@ -4,6 +4,7 @@ import { Form, Col, Row, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Message from "../Components/Message.js";
 import Loader from "../Components/Loader.js";
+import Meta from "../Components/Meta.js";
 import { getUserDetails, updateUser } from "../actions/userActions.js";
 import { USER_UPDATE_RESET } from "../constants/userConstants.js";
 
@@ -48,6 +49,7 @@ export const UserEditScreen = ({ match, history }) => {
 
   return (
     <>
+      <Meta title="ProShop | Admin | UserEdit" />
       <Link to={"/admin/userList"} className="btn btn-light my-3">
         Go Back
       </Link>

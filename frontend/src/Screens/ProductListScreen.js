@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../Components/Message.js";
 import Loader from "../Components/Loader.js";
 import Paginate from "../Components/Paginate";
+import Meta from "../Components/Meta.js";
 import {
   listProducts,
   deleteProduct,
@@ -70,6 +71,7 @@ export const ProductListScreen = ({ history, match }) => {
 
   return (
     <>
+      <Meta title="ProShop | Admin | ProductList" />
       <Row className="align-items-center">
         <Col>
           <h1>Products</h1>

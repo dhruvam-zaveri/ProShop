@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Form, Row, Col, Button, Container } from "react-bootstrap";
 import { saveShippingAddress } from "../actions/cartAction.js";
 import CheckoutSteps from "../Components/CheckoutSteps.js";
+import Meta from "../Components/Meta.js";
 
 export const ShippingScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ export const ShippingScreen = ({ history }) => {
 
   return (
     <Container>
+      <Meta title="ProShop | Order | Shipping" />
       <Row className="justify-content-md-center">
         <Col md={6} xs={12}>
           <CheckoutSteps step1 step2 />

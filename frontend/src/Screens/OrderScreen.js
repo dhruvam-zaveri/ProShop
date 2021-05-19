@@ -15,6 +15,7 @@ import {
 } from "../constants/orderConstants.js";
 import Message from "../Components/Message.js";
 import Loader from "../Components/Loader.js";
+import Meta from "../Components/Meta.js";
 
 export const PlaceOrderScreen = ({ history, match }) => {
   const orderId = match.params.id;
@@ -91,6 +92,7 @@ export const PlaceOrderScreen = ({ history, match }) => {
     <Message variant="danger">{error}</Message>
   ) : (
     <>
+      <Meta title="ProShop | Order Summary" />
       <h1>
         <strong>Order #{order._id}</strong>
       </h1>
