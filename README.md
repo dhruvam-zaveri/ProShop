@@ -1,7 +1,9 @@
 # ProShop
 
 A simplistic E-Commerce website developed using MERN stack with PayPal payment gateway. 
-
+<br>
+Check out the website by clicking <a href='https://proshop-webapp-0.herokuapp.com/'>here</>. For any feedback or to contribute to this project kindly email me or connect via LinkedIn (both available in my profile section).
+  
 ## Features
 - Full featured shopping cart
 - Carousel deisplaying current sales
